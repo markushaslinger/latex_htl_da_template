@@ -1,0 +1,153 @@
+\documentclass[12pt,a4paper,titlepage,listof=totoc,bibliography=totoc,chapteratlists=0pt]{scrreprt}
+
+\begin{filecontents*}{\jobname.xmpdata}
+	\Keywords{VR, IOT, TODO}
+	\Title{Unser tolles Thema -- wir sind suppa}
+	\Author{Stefan Schwammal, Susi Schwammal}
+\end{filecontents*}
+
+\setcounter{tocdepth}{1}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage[left=4.00cm, right=2.00cm, top=2.00cm, bottom=2.00cm,foot=1cm]{geometry}
+\usepackage[splitrule,hang,flushmargin,multiple,bottom]{footmisc}
+\usepackage{lmodern, textcomp}
+\usepackage{lmodern}
+\usepackage{pdfpages}
+\usepackage[ngerman]{babel}
+\usepackage{multicol}
+\usepackage{subfig}
+\usepackage{float}
+\usepackage{array,tabularx,booktabs}
+\usepackage{ragged2e}
+\usepackage{lipsum}
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\usepackage{enumitem}
+\newlist{compactitem}{itemize}{3}
+\setlist[compactitem,1]{label=\textbullet, nosep,leftmargin=1.5em,labelwidth=*,align=left}
+\setlist[compactitem,2]{label=--, nosep,leftmargin=1.5em,labelwidth=*,align=left}
+\setlist[compactitem,3]{label=\textopenbullet, nosep,leftmargin=1.5em,labelwidth=*,align=left}
+\newlist{compactenum}{enumerate}{3}
+\setlist[compactenum,1]{label=\arabic*., nosep,leftmargin=1.5em,labelwidth=*,align=left}
+\setlist[compactenum,2]{label=\alph*., nosep,leftmargin=1.5em,labelwidth=*,align=left}
+\setlist[compactenum,3]{label=\roman*., nosep,leftmargin=1.5em,labelwidth=*,align=left}
+\newlist{compactdesc}{description}{3}
+\setlist[compactdesc]{leftmargin=1.5em,labelwidth=*,align=left}
+
+\usepackage{microtype}
+
+\usepackage[parfill]{parskip}
+
+\definecolor{bluekeywords}{rgb}{0.13,0.13,1}
+\definecolor{greencomments}{rgb}{0,0.5,0}
+\definecolor{redstrings}{rgb}{0.9,0,0}
+\definecolor{lightgray}{gray}{0.9}
+\definecolor{lightblue}{rgb}{0.93,0.95,1.0}
+
+\usepackage{listings}
+
+\makeatletter
+\lstdefinestyle{lststyle}{
+	basicstyle=%
+	\ttfamily
+	\lst@ifdisplaystyle\scriptsize\fi
+}
+\makeatother
+
+\renewcommand{\lstlistlistingname}{List of Listings}
+% TODO: define other languages as needed
+\lstset{language=Python,
+numbers=left,               
+numberstyle=\tiny,          
+showspaces=false,
+showtabs=false,
+breaklines=true,
+lineskip=-1pt,
+tabsize=2,
+showstringspaces=false,
+breakatwhitespace=true,
+escapeinside={(*@}{@*)},
+commentstyle=\color{greencomments},
+keywordstyle=\color{bluekeywords}\bfseries,
+stringstyle=\color{redstrings},
+style=lststyle,
+xleftmargin=17pt,
+         framexleftmargin=17pt,
+         framexrightmargin=5pt,
+         framexbottommargin=4pt
+}
+\lstset{
+morekeywords={base,var,in,out,dynamic,from,where,select,orderby,function,\$,group,by,into,yield,async,await,@,None,self,as,elif,with}
+}
+\lstdefinelanguage{TypeScript}{
+	keywords={typeof, new, true, false, catch, function, return, null, switch, var, if, in, while, do, else, case, break, void, number, string, boolean, module, \$, export, for, this},
+	keywordstyle=\color{blue}\bfseries,
+	ndkeywords={class, export, boolean, throw, implements, import, this},
+	ndkeywordstyle=\color{darkgray}\bfseries,
+	identifierstyle=\color{black},
+	sensitive=false,
+	comment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	commentstyle=\color{purple}\ttfamily,
+	stringstyle=\color{red}\ttfamily,
+	morestring=[b]',
+	morestring=[b]"
+}
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox[cmyk]{0.43, 0.35, 0.35,0.01}{\parbox{\textwidth}{\hspace{10pt}#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white} 
+\captionsetup[table]{justification=centering, singlelinecheck=false}
+
+\usepackage{setspace}
+\newcommand{\MSonehalfspacing}{%
+	\setstretch{1.44}%  default
+	\ifcase \@ptsize \relax % 10pt
+	\setstretch {1.448}%
+	\or % 11pt
+	\setstretch {1.399}%
+	\or % 12pt
+	\setstretch {1.433}%
+	\fi
+}
+
+\newcommand{\setauthor}[1]{\ohead[]{#1}}
+
+\usepackage[automark]{scrlayer-scrpage}
+\pagestyle{scrheadings}
+\automark{chapter}
+\renewcommand\sectionmark[1]{\markright{\MakeMarkcase {\thesection\hskip .5em\relax#1}}}
+\rohead{\ifnum\expandafter\pdfstrcmp\botmark=0 \rightmark\else\leftmark{} --- \rightmark\fi}
+\ihead[]{\headmark}
+\chead[]{}
+\ohead{}
+\cfoot[]{}
+\ofoot[\pagemark]{\pagemark}
+\setheadsepline{.1pt}
+
+\usepackage[hyphens]{url}
+
+\usepackage[a-1b]{pdfx}
+
+\usepackage{hyperref}
+\hypersetup{pdfa}
+
+\usepackage[nonumberlist,toc,nopostdot]{glossaries}
+
+\usepackage{chngcntr}
+\counterwithout{footnote}{chapter}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+\AtBeginDocument{
+	\counterwithout{lstlisting}{chapter}
+	\urlstyle{sf}
+}
+\newcounter{RPages}

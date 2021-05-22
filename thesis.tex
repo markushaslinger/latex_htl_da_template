@@ -1,0 +1,96 @@
+\input{header}
+
+\makeatletter
+\def\bstctlcite{\@ifnextchar[{\@bstctlcite}{\@bstctlcite[@auxout]}}
+\def\@bstctlcite[#1]#2{\@bsphack
+	\@for\@citeb:=#2\do{%
+		\edef\@citeb{\expandafter\@firstofone\@citeb}%
+		\if@filesw\immediate\write\csname #1\endcsname{\string\citation{\@citeb}}\fi}%
+	\@esphack}
+\makeatother
+
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
+\interfootnotelinepenalty=10000
+
+\title{Unser tolles Thema -- wir sind suppa}
+\author{Stefan Schwammal, Susi Schwammal}
+
+\makeindex
+\makeglossaries
+\begin{document}
+\bstctlcite{IEEEexample:BSTcontrol}
+\newcommand{\reminder}[1]
+{ \textcolor{red}{<[{\bf\marginpar{\mbox{$<==$}} #1 }]>} }
+\newcommand{\icode}[1]{\lstinline$#1$}
+%\urlstyle{same}
+%\setstretch{1.5}
+\setstretch {1.433}
+\renewcommand{\arraystretch}{1.2}
+
+\includepdf{./titlepage/coversheet}
+\pagenumbering{Roman}
+\newpage
+\input{oath}
+\begin{spacing}{1}
+\chapter*{Abstract}
+\end{spacing}
+\input{./sections/abstract}
+
+\pagestyle{plain}
+
+\renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
+
+\tableofcontents
+\newpage
+\setcounter{RPages}{\value{page}}
+\setcounter{page}{0}
+\pagenumbering{arabic}
+\pagestyle{scrheadings}
+
+\begin{spacing}{1}
+\chapter{Einleitung}\label{chapter:introduction}
+\end{spacing}
+\input{./sections/introduction}
+
+\begin{spacing}{1}
+\chapter{Umfeldanalyse}
+\end{spacing}
+\input{./sections/related_work}
+
+\begin{spacing}{1}
+\chapter{Technologien}\label{chapter:tech}
+\end{spacing}
+\input{./sections/technologies}
+
+\begin{spacing}{1}
+\chapter{Umsetzung}\label{chapter:implementation}
+\end{spacing}
+\input{./sections/implementation}
+
+\begin{spacing}{1}
+\chapter{Zusammenfassung}
+\end{spacing}
+\input{./sections/summary}
+
+\newpage
+\pagenumbering{Roman}
+\setcounter{page}{\value{RPages}}
+\input{glossary}
+%\setlength{\glsdescwidth}{0.8\linewidth}
+\glsnogroupskiptrue
+\printglossary[title=Glossar,toctitle=Glossar] %,style=long]
+\spacing{1}{
+%\bibliographystyle{IEEEtran}
+\bibliographystyle{ieeetrande}
+\bibliography{bib}
+}
+\listoffigures
+\listoftables
+\lstlistoflistings
+\appendix
+\addchap{Anhang}
+\input{./sections/appendix}
+\end{document}
+

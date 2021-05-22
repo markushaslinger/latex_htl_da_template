@@ -1,0 +1,102 @@
+%% erstellt von Andreas Neubauer, Juli 2009
+%% aktualisiert von Markus Haslinger, Mai 2021
+\documentclass[12pt,a4paper]{article}
+\usepackage{graphicx,color}
+\textwidth 16cm
+\textheight 25cm
+\topmargin 3.2cm
+\oddsidemargin 0mm
+\parindent 0pt
+\usepackage[utf8]{inputenc}
+\usepackage[a-1b]{pdfx}
+\pagestyle{empty}
+\begin{document}
+% -------- only change entries beginning here ----------------------------
+%
+% enter the title of the thesis
+\def\title{Unser tolles Thema -- wir sind genial}
+%
+\def\type{DIPLOMARBEIT}
+\def\degree{Reife- und Diplomprüfung}
+%
+% enter the department
+%
+\def\dep{Höheren Abteilung für Informatik}
+%
+% enter the student names
+%
+\def\nameone{Stefan Schwammal}
+\def\nametwo{Susi Schwammal}
+%\def\namethree{Sebastian Schwammal}
+%\def\namefour{Sabine Schwammal}
+%
+% enter the name of the supervisor 
+%
+\def\firstreferee{Super Lehrer}
+%
+% enter information about external partners or comment the line
+%
+\def\assist{Peter Programmierer, Initech Inc.}
+%
+% enter month and year
+\def\date{April 2022}
+%
+% the vertical alignment heavily depends on the length of the title and number of students 
+% below you might add additional space via (several) \medskip or \bigskip.
+% do not change anything else
+% -------------------------------------------------------------------------------
+%
+\def\ifundefined#1{\expandafter\ifx\csname#1\endcsname\relax}
+%
+\unitlength 1cm
+\definecolor{mygray}{gray}{.85}
+\sffamily
+\begin{picture}(0,0)
+\put(-2.6,5){\color{mygray}\rule{25cm}{2.6cm}}
+\put(12.8,5.15){\small LEONDING}
+\put(12.8,5.5){\small BUNDESLEHRANSTALT}
+\put(12.8,5.85){\small HÖHERE}
+\put(14.58,5.85){\small TECHNISCHE}
+\put(0.35,5.25){\includegraphics[width=6cm]{htlleondinglogo.png}}
+\end{picture}
+%
+\begin{center}
+    \vspace{-2cm}
+{\LARGE\bfseries\title}
+\bigskip\bigskip\bigskip\par
+{\Large\type}
+\bigskip\par
+verfasst im Rahmen der
+\bigskip\smallskip\par
+{\Large\degree}
+\bigskip\par
+an der
+\bigskip\smallskip\par
+{\Large\dep}
+\end{center}
+
+\vspace*{4cm}
+Eingereicht von:
+\smallskip\par
+{\large\nameone}\par
+{\large\nametwo}
+\ifundefined{namethree}\else
+\par{\large\namethree}
+\fi
+\ifundefined{namefour}\else
+\par{\large\namefour}
+\fi
+\medskip\bigskip\par
+Betreuer:
+\smallskip\par
+{\large\firstreferee}
+\ifundefined{assist}\else
+\medskip\bigskip\par
+Projektpartner:
+\smallskip\par
+{\large{\assist}}
+\fi
+
+\vspace*{4cm}
+{\large Leonding, \date}
+\end{document}

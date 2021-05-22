@@ -1,0 +1,40 @@
+Siehe tolle Daten in Tab. \ref{tab:impl:data}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|lcc|}
+    \hline
+              & \textbf{Regular Customers} & \textbf{Random Customers} \\ \hline
+    Age       & 20-40                      & \textgreater{}60          \\ \hline
+    Education & university                 & high school               \\ \hline
+    \end{tabular}
+    \caption{Ein paar tabellarische Daten}
+    \label{tab:impl:data}
+\end{table}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.5]{pics/knuthi.jpg}
+    \caption{Don Knuth -- CS Allfather}
+    \label{fig:impl:knuth}
+\end{figure}
+
+Siehe und staune in Abb. \ref{fig:impl:knuth}.
+\lipsum[6-9]
+Dann betrachte den Code in Listing \ref{lst:impl:foo}.
+
+\begin{lstlisting}[language=Python,caption=Some code,label=lst:impl:foo]
+# Program to find the sum of all numbers stored in a list (the not-Pythonic-way)
+
+# List of numbers
+numbers = [6, 5, 3, 8, 4, 2, 5, 4, 11]
+
+# variable to store the sum
+sum = 0
+
+# iterate over the list
+for val in numbers:
+    sum = sum+val
+
+print("The sum is", sum)
+\end{lstlisting}

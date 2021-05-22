@@ -1,0 +1,65 @@
+:sectnums:
+
+= LaTeX Workshop & Glossary
+
+These steps describe hwo to enable LaTeX Workshop to generate a proper glossary.
+
+== Open Settings
+
+Open the `settings.json` file at the LaTeX Workshop extension position.
+This is done easiest following these steps:
+
+. File -> Preferences -> Settings
+. In 'Search setting' input 'recipe'
+** The list gets filtered down considerably
+. Look for these two entries:
+** Latex-workshop > Latex: Recipes
+** Latex-workshop > Latex: Tools
+
+Both entries have a `edit in settings.json` link, pressing it will bring you directly to the correct section in the `settings.json`.
+Use that for the next two steps.
+
+== Add tool
+
+To generate the glossary entries an external tool called `makeglossaries` is required.
+This tool has already been installed automatically by installing the `glossaries` package defined in the `header.tex` file.
+
+Now we need to teach LaTeX Workshop about its existence.
+Add the following tool definition to the `latex-workshop.latex.tools` array:
+
+[source,json]
+----
+{
+    "name": "makeglossaries",
+    "command": "makeglossaries",
+    "args": [
+        "%DOCFILE%"
+    ],
+    "env": {}
+}
+----
+
+== Add recipe
+
+Similar to `bibtex` generating glossaries is a little cumbersome.
+You don't have to run this every time you build the document, but every time you want the glossary to be updated properly (so at least run it before reviews).
+
+We will define a recipe to do this job (running `pdflatex` thrice is _not_ a typo!).
+Add the following recipe definition to the `latex-workshop.latex.recipes` array:
+
+[source,json]
+----
+{
+    "name": "pdflatex + makeglossaries",
+    "tools": [
+        "pdflatex",
+        "makeglossaries",
+        "pdflatex",
+        "pdflatex"
+    ]
+}
+----
+
+== Restart VS Code
+
+Restarting is the easiest, and most robust way to properly load the new settings into the UI.
