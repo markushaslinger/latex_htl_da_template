@@ -9,37 +9,54 @@
 \parindent 0pt
 \usepackage[utf8]{inputenc}
 \usepackage[a-1b]{pdfx}
+\usepackage{xstring}
 \pagestyle{empty}
+\include{../global-const}
 \begin{document}
 % -------- only change entries beginning here ----------------------------
 %
 % enter the title of the thesis
-\def\title{Unser tolles Thema -- wir sind genial}
+\def\title{\thesistitle}
 %
-\def\type{DIPLOMARBEIT}
+\IfStrEq{\thesislang}{de}{
+    \def\type{DIPLOMARBEIT}
+}
+{
+    \def\type{DIPLOMA THESIS}
+}
 \def\degree{Reife- und Diplomprüfung}
 %
 % enter the department
 %
-\def\dep{Höheren Abteilung für Informatik} % or IT-Medientechnik
+\IfStrEq{\thesislang}{de}{
+    \def\dep{Höheren Abteilung für \department}
+}
+{
+    \def\dep{Department of \department}
+}
 %
 % enter the student names
 %
-\def\nameone{Stefan Schwammal}
-\def\nametwo{Susi Schwammal}
-%\def\namethree{Sebastian Schwammal}
-%\def\namefour{Sabine Schwammal}
+\def\nameone{\firstauthor}
+\def\nametwo{\secondauthor}
+%\def\namethree{\thirdauthor}
+%\def\namefour{\fourthauthor}
 %
 % enter the name of the supervisor 
 %
-\def\firstreferee{Lukas Lehrer}
+\def\firstreferee{\supervisor}
 %
 % enter information about external partners or comment the line
 %
-\def\assist{Petra Programmierer, Initech Inc.}
+\def\assist{\projectpartner}
 %
 % enter month and year
-\def\date{April 2023}
+\IfStrEq{\thesislang}{de}{
+    \def\date{\duedatede}
+}
+{
+    \def\date{\duedateen}
+}
 %
 % the vertical alignment heavily depends on the length of the title and number of students 
 % below you might add additional space via (several) \medskip or \bigskip.
@@ -66,17 +83,35 @@
 \bigskip\bigskip\bigskip\par
 {\Large\type}
 \bigskip\par
+\IfStrEq{\thesislang}{de}
+{
 verfasst im Rahmen der
+}
+{
+submitted for the
+}
 \bigskip\smallskip\par
 {\Large\degree}
 \bigskip\par
+\IfStrEq{\thesislang}{de}
+{
 an der
+}
+{
+at the
+}
 \bigskip\smallskip\par
 {\Large\dep}
 \end{center}
 
 \vspace*{4cm}
+\IfStrEq{\thesislang}{de}
+{
 Eingereicht von:
+}
+{
+Submitted by:
+}
 \smallskip\par
 {\large\nameone}\par
 {\large\nametwo}
@@ -87,12 +122,24 @@ Eingereicht von:
 \par{\large\namefour}
 \fi
 \medskip\bigskip\par
+\IfStrEq{\thesislang}{de}
+{
 Betreuer:
+}
+{
+Supervisor:
+}
 \smallskip\par
 {\large\firstreferee}
 \ifundefined{assist}\else
 \medskip\bigskip\par
+\IfStrEq{\thesislang}{de}
+{
 Projektpartner:
+}
+{
+Project Partner:
+}
 \smallskip\par
 {\large{\assist}}
 \fi

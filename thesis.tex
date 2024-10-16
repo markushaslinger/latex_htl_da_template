@@ -1,5 +1,6 @@
 % !TEX root = thesis.tex
 \documentclass[12pt,a4paper,titlepage,listof=totoc,bibliography=totoc,chapteratlists=0pt]{scrreprt}
+\input{global-const.tex}
 \input{header}
 
 \makeatletter
@@ -16,8 +17,18 @@
 \displaywidowpenalty=10000
 \interfootnotelinepenalty=10000
 
-\title{Unser tolles Thema -- wir sind suppa}
-\author{Stefan Schwammal, Susi Schwammal}
+\title{\thesistitle}
+\makeatletter
+\@ifundefined{fourthauthor}{
+  \@ifundefined{thirdauthor}{
+    \author{\firstauthor, \secondauthor}
+  }{
+    \author{\firstauthor, \secondauthor, \thirdauthor}
+  }
+}{
+  \author{\firstauthor, \secondauthor, \thirdauthor, \fourthauthor}
+}
+\makeatother
 
 \makeindex
 \makeglossaries
@@ -39,7 +50,13 @@
 
 \pagestyle{plain}
 
-\renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
+\IfStrEq{\thesislang}{de}
+{
+	\renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
+}
+{
+ % keep at list of listing
+}
 
 \tableofcontents
 \newpage
@@ -79,10 +96,21 @@
 \input{glossary}
 %\setlength{\glsdescwidth}{0.8\linewidth}
 \glsnogroupskiptrue
-\printglossary[title=Glossar,toctitle=Glossar] %,style=long]
+\IfStrEq{\thesislang}{de}
+{
+	\printglossary[title=Glossar,toctitle=Glossar] %,style=long]
+}
+{
+	\printglossary[title=Glossary,toctitle=Glossary] %,style=long]
+}
 \spacing{1}{
-%\bibliographystyle{IEEEtran}
-\bibliographystyle{ieeetrande}
+\IfStrEq{\thesislang}{de}
+{
+	\bibliographystyle{ieeetrande}
+}
+{
+	\bibliographystyle{IEEEtran}
+}
 \bibliography{bib}
 }
 \listoffigures
